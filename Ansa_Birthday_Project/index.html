@@ -1,0 +1,552 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10051c">
+  <meta name="description" content="A little more magic — a birthday surprise made with love.">
+
+  <title>A Little More Magic | Birthday Celebration</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <canvas id="fireworks" aria-hidden="true"></canvas>
+
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <div class="petal-layer" id="petalLayer"></div>
+  <div class="heart-layer" id="heartLayer"></div>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-overlay hidden" id="countdownOverlay" aria-live="polite">
+    <span class="eyebrow">GET READY FOR THE MAGIC</span>
+    <div class="countdown-number" id="countdownNumber">5</div>
+    <p>The celebration begins in...</p>
+  </div>
+
+  <main>
+
+    <!-- INTRO SCREEN -->
+    <section class="intro-screen" id="intro">
+
+      <div class="intro-orbit orbit-one"></div>
+      <div class="intro-orbit orbit-two"></div>
+
+      <div class="intro-content">
+
+        <a class="brand intro-brand" href="#intro">
+          A little <span>more</span> Magic ✦
+        </a>
+
+        <span class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          A MOMENT MADE JUST FOR YOU ANSA
+        </span>
+
+        <h1>
+          Something special<br>
+          <em>is waiting for you 
+            <br> My Dear ANSA.</em>
+        </h1>
+
+        <p class="intro-copy">
+          A little magic, a lot of love, and a celebration<br class="desktop-only">
+          made unforgettable.
+        </p>
+
+        <div class="secret-gate">
+
+          <label for="secretCode">
+            ✧ ENTER YOUR SECRET CELEBRATION CODE
+          </label>
+
+          <div class="code-field">
+
+            <span aria-hidden="true">✧</span>
+
+            <input
+              id="secretCode"
+              type="password"
+              maxlength="24"
+              placeholder="Enter secret code"
+              autocomplete="off"
+            >
+
+            <button id="openSurprise" aria-label="Open surprise">
+              ↗
+            </button>
+
+          </div>
+
+          <p class="gate-hint" id="gateHint">
+            A little surprise is waiting behind the code.
+          </p>
+
+        </div>
+
+        <div class="scroll-note">
+          MADE WITH LOVE <span>✧</span>
+        </div>
+
+      </div>
+
+      <!-- INTRO ART -->
+      <div class="intro-art">
+
+        <div class="moon"></div>
+        <div class="girl-aura"></div>
+
+        <div class="girl-image-wrap">
+
+          <img
+            class="anime-girl"
+            src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=85"
+            alt="Dreamy magical garden artwork"
+            onerror="this.style.display='none';document.querySelector('.girl-fallback').style.display='flex'"
+          >
+
+          <div class="girl-fallback">
+
+            <span class="girl-crown">♕</span>
+            <div class="girl-hair"></div>
+
+            <div class="girl-face">
+              <i></i>
+              <i></i>
+              <b></b>
+            </div>
+
+            <div class="girl-neck"></div>
+            <div class="girl-dress"></div>
+
+            <span class="dress-spark">✦</span>
+
+          </div>
+
+        </div>
+
+        <div class="floating-note note-one">♡</div>
+        <div class="floating-note note-two">✧</div>
+        <div class="floating-note note-three">✦</div>
+
+        <div class="art-caption">
+          <span>✦</span>
+          A LITTLE MAGIC, JUST FOR YOU
+          <span>✦</span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CELEBRATION SCREEN -->
+    <section class="celebration hidden" id="celebration">
+
+      <!-- NAVBAR -->
+      <header class="topbar">
+
+        <a class="brand" href="#celebration">
+          a little <span>more</span> magic ✦
+        </a>
+
+        <div class="topbar-actions">
+
+          <span class="topbar-note">
+            28 NOVEMBER · YOUR SPECIAL DAY
+          </span>
+
+          <button class="music-button" id="musicToggle" aria-pressed="false">
+            ♫ <span>Play music</span>
+          </button>
+
+        </div>
+
+      </header>
+
+
+      <!-- HERO -->
+      <section class="hero section-shell">
+
+        <div class="hero-copy">
+
+          <span class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            TODAY THE WORLD CELEBRATES YOU
+          </span>
+
+          <h2 class="birthday-title">
+            Happy<br>
+            <em>Birthday, Ansa!</em>
+          </h2>
+
+          <p class="hero-subtitle">
+            A day as lovely as your heart, a year as bright as your dreams,
+            and a lifetime filled with reasons to smile. Today is all about you.
+          </p>
+
+          <a class="text-link" href="#cake">
+            Make a birthday wish ↓
+          </a>
+
+          <button class="wish-reveal-button" id="revealWishes">
+            Read your special birthday message ✦
+          </button>
+
+        </div>
+
+        <!-- GIFT -->
+        <div
+          class="gift-stage"
+          id="giftStage"
+          role="button"
+          tabindex="0"
+          aria-label="Open Ansa's birthday gift"
+        >
+
+          <div class="gift-aura"></div>
+          <div class="gift-shadow"></div>
+
+          <div class="gift-box" id="giftBox">
+
+            <div class="gift-lid">
+              <span class="ribbon ribbon-top"></span>
+              <span class="bow bow-left"></span>
+              <span class="bow bow-right"></span>
+            </div>
+
+            <div class="gift-body">
+              <span class="ribbon ribbon-front"></span>
+              <span class="gift-spark">✦</span>
+              <span class="gift-heart">♡</span>
+            </div>
+
+          </div>
+
+          <div class="gift-caption">A BOX FULL OF LOVE</div>
+
+          <p class="gift-hint">
+            Tap the gift to open your welcome note
+          </p>
+
+          <div class="gift-message hidden" id="giftMessage">
+            A little surprise, especially for you. 💗
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- CAKE -->
+      <section class="cake-section section-shell" id="cake">
+
+        <div class="section-heading">
+
+          <span class="eyebrow">
+            MAKE A WISH, BIRTHDAY GIRL
+          </span>
+
+          <h2>
+            Your very own <em>birthday cake.</em>
+          </h2>
+
+          <p>
+            Close your eyes, make a secret wish, blow out the candles,
+            and cut your cake!
+          </p>
+
+        </div>
+
+        <div class="cake-wrap">
+
+          <div class="cake-glow"></div>
+
+          <div class="cake" id="cakeVisual" aria-label="Pink and gold birthday cake">
+
+            <div class="cake-sprinkles"></div>
+
+            <div class="candle candle-one">
+              <span class="flame"></span>
+            </div>
+
+            <div class="candle candle-two">
+              <span class="flame"></span>
+            </div>
+
+            <div class="candle candle-three">
+              <span class="flame"></span>
+            </div>
+
+            <div class="cake-top">
+              <span class="icing-drip drip-one"></span>
+              <span class="icing-drip drip-two"></span>
+              <span class="icing-drip drip-three"></span>
+              <span class="icing-drip drip-four"></span>
+            </div>
+
+            <div class="cake-layer cake-upper"></div>
+            <div class="cream-band"></div>
+            <div class="cake-layer cake-lower"></div>
+
+            <div class="cake-plate">
+              <span>HAPPY BIRTHDAY ANSA</span>
+            </div>
+
+            <div class="cake-slice" id="cakeSlice"></div>
+
+          </div>
+
+          <div class="cake-actions">
+
+            <button class="secondary-button" id="blowCandles">
+              ✧ Blow out candles
+            </button>
+
+            <button class="secondary-button cut-button" id="cutCake">
+              🍰 Cut the birthday cake
+            </button>
+
+            <button class="secondary-button reset-button" id="resetCake">
+              ↻ Reset cake
+            </button>
+
+          </div>
+
+          <p class="wish-feedback" id="wishFeedback">
+            Your wish is ready to take flight. ✨
+          </p>
+
+          <p class="cake-cut-message hidden" id="cakeCutMessage">
+            The first slice is for the birthday queen!
+            May life always be this sweet. 💗
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- BIRTHDAY WISH -->
+      <section class="wish-section section-shell" id="wish">
+
+        <div class="wish-card">
+
+          <div class="quote-mark">“</div>
+
+          <span class="eyebrow">A NOTE FROM THE HEART</span>
+
+          <h2>
+            For someone<br>
+            <em>one of a kind.</em>
+          </h2>
+
+          <p>
+            Dear Ansa, may your birthday bring you the kind of happiness
+            that stays long after the candles have gone out. May your dreams
+            grow bigger, your worries grow smaller, and your heart always
+            find reasons to feel grateful. You deserve love that feels
+            genuine, friendships that feel like home, and beautiful moments
+            that become unforgettable memories. Keep shining in your own
+            special way. Happy Birthday! 💗
+          </p>
+
+          <div class="extra-wishes">
+            <span class="wish-chip">More laughter ✧</span>
+            <span class="wish-chip">Bigger dreams ✧</span>
+            <span class="wish-chip">Beautiful beginnings ✧</span>
+            <span class="wish-chip">Endless happiness ✧</span>
+          </div>
+
+          <div class="signature">
+            With love, <span>always ✦</span>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- SPECIAL QUALITIES -->
+      <section class="message-section section-shell">
+
+        <div class="section-heading">
+
+          <span class="eyebrow">THINGS THAT MAKE YOU, YOU</span>
+
+          <h2>
+            A few beautiful things <em>about Ansa.</em>
+          </h2>
+
+        </div>
+
+        <div class="message-grid">
+
+          <article class="message-card">
+            <span>♡</span>
+            <h3>Your Eyes</h3>
+            <p>Your eyes make every smile feel brighter. May they always sparkle with hope, excitement, and all the happiness your heart deserves.</p>
+          </article>
+
+          <article class="message-card">
+            <span>✧</span>
+            <h3>Your Personality</h3>
+            <p>There is something wonderfully special about the way you are. Never dim your light to fit into someone else's world.</p>
+          </article>
+
+          <article class="message-card">
+            <span>🌷</span>
+            <h3>Your Kind Heart</h3>
+            <p>May the kindness you share find its way back to you in a thousand beautiful forms.</p>
+          </article>
+
+          <article class="message-card">
+            <span>✨</span>
+            <h3>Your Smile</h3>
+            <p>Keep smiling your way through life. Your happiness deserves to be seen, celebrated, and protected.</p>
+          </article>
+
+          <article class="message-card">
+            <span>🦋</span>
+            <h3>Your Strength</h3>
+            <p>Even on difficult days, remember how much courage you carry. You are capable of beautiful things.</p>
+          </article>
+
+          <article class="message-card">
+            <span>⭐</span>
+            <h3>Your Dreams</h3>
+            <p>May every dream you whisper to yourself find a path toward becoming real.</p>
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- WISH WALL -->
+      <section class="wish-wall section-shell">
+
+        <div class="section-heading">
+
+          <span class="eyebrow">LITTLE BLESSINGS</span>
+
+          <h2>
+            Open a wish, <em>keep the magic.</em>
+          </h2>
+
+          <p>Tap a card to reveal a tiny birthday blessing.</p>
+
+        </div>
+
+        <div class="wish-wall-grid">
+
+          <button class="wish-wall-card" data-wish="May every sunrise bring you a fresh reason to smile.">
+            ☀️<span>Open sunshine</span><b></b>
+          </button>
+
+          <button class="wish-wall-card" data-wish="May your kind heart receive the same kindness it gives to others.">
+            💗<span>Open kindness</span><b></b>
+          </button>
+
+          <button class="wish-wall-card" data-wish="May your biggest dreams feel closer with every step you take.">
+            🌟<span>Open a dream</span><b></b>
+          </button>
+
+          <button class="wish-wall-card" data-wish="May laughter find you often and stay a little longer each time.">
+            🦋<span>Open happiness</span><b></b>
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- FINALE -->
+      <section class="finale">
+
+        <div class="finale-stars">✦ ✧ ✦ ✧ ✦</div>
+
+        <span class="eyebrow">HERE'S TO YOU, ANSA</span>
+
+        <h2>
+          Keep sparkling.<br>
+          <em>Your story is magic.</em>
+        </h2>
+
+        <p>
+          May this new chapter be your most beautiful one yet.
+        </p>
+
+        <button class="primary-button" id="celebrateAgain">
+          Celebrate again ✦
+        </button>
+
+      </section>
+
+
+      <footer>
+        CRAFTED WITH <span>♥</span> AND A LITTLE BIT OF MAGIC
+        <p>Made with love, just for you, Ansa.</p>
+      </footer>
+
+    </section>
+
+  </main>
+
+
+  <!-- GIFT MODAL -->
+  <div class="modal hidden" id="giftModal" role="dialog" aria-modal="true" aria-labelledby="noteTitle">
+
+    <div class="note-paper">
+
+      <div class="note-seal">✦</div>
+
+      <span class="eyebrow">A SPECIAL WELCOME NOTE</span>
+
+      <h2 id="noteTitle">
+        To the Birthday Queen, Ansa 💗
+      </h2>
+
+      <p>
+        Welcome to your little world of magic! Today, every sparkle,
+        every flower, and every wish is here to remind you how precious
+        you are. I hope you never forget that your eyes hold their own
+        sparkle, your smile can brighten an ordinary moment, and your
+        personality makes you beautifully, unmistakably YOU.
+      </p>
+
+      <p>
+        May you always feel appreciated, may your heart stay soft and
+        your spirit stay strong. You deserve a life full of genuine love,
+        peaceful days, exciting adventures, and dreams that come true.
+        This little surprise is only a small reminder of how special you are.
+      </p>
+
+      <div class="signature">
+        With lots of love, <span>♡</span>
+      </div>
+
+      <button class="close-note" id="closeNote">
+        Open my celebration ✨
+      </button>
+
+    </div>
+
+  </div>
+
+ 
+  <script src="script.js"></script>
+
+</body>
+</html>
